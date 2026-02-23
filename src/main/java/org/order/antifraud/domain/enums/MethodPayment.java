@@ -1,4 +1,4 @@
-package org.order.antifraud.application.dto.request;
+package org.order.antifraud.domain.enums;
 
 public enum MethodPayment {
     CREDIT_CARD,
