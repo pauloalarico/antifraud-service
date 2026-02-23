@@ -2,7 +2,10 @@ spring:
   application:
    name: antifraud
 
-
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVER}
+    consumer:
+      group-id: ${apps.kafka.groupId}
 
 app:
   kafka:
@@ -10,4 +13,5 @@ app:
     server: ${KAFKA_SERVER}
     trustDeserializer: ${TRUST_PACKAGES_ANTIFRAUD}
     mappingNewAntiFraud: ${NEW_ANTIFRAUD}
+    newPaymentTopic: ${TOPIC_PAYMENT_REQUESTED}
 
