@@ -1,0 +1,13 @@
+spring:
+  application:
+   name: antifraud
+
+
+
+app:
+  kafka:
+    consumerId: ${GROUP_ID_ANTIFRAUD}
+    server: ${KAFKA_SERVER}
+    trustDeserializer: ${TRUST_PACKAGES_ANTIFRAUD}
+    mappingNewAntiFraud: ${NEW_ANTIFRAUD}
+
