@@ -24,6 +24,9 @@ public class AntiFraudProducerConfig {
     @Value("${app.kafka.producer.type-mapping}")
     private String typeMapping;
 
+    @Value("${app.kafka.producer.topic}")
+    private String topicProducerTopic;
+
     @Bean
     public ProducerFactory<String, Object> factory() {
         Map<String, Object> configs = new HashMap<>();
@@ -41,7 +44,7 @@ public class AntiFraudProducerConfig {
     }
 
     public NewTopic topic() {
-        return TopicBuilder.name("anti-fraud-response")
+        return TopicBuilder.name(topicProducerTopic)
                 .partitions(3)
                 .replicas(1)
                 .build();
