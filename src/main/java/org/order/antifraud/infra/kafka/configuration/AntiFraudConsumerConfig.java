@@ -20,7 +20,7 @@ import java.util.Map;
 @Configuration
 @ConfigurationProperties(prefix = "app.kafka")
 @Slf4j
-public class AntiFraudeConsumerConfig {
+public class AntiFraudConsumerConfig {
     private String consumerId;
     private String server;
     private String trustDeserializer;
