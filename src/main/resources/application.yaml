@@ -14,4 +14,8 @@ app:
     trustDeserializer: ${TRUST_PACKAGES_ANTIFRAUD}
     mappingNewAntiFraud: ${NEW_ANTIFRAUD}
     newPaymentTopic: ${TOPIC_PAYMENT_REQUESTED}
+    producer:
+      type-mapping: ${PRODUCER_TYPE_MAPPING}
+
+
 
