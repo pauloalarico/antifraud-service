@@ -16,6 +16,7 @@ app:
     newPaymentTopic: ${TOPIC_PAYMENT_REQUESTED}
     producer:
       type-mapping: ${PRODUCER_TYPE_MAPPING}
+      topic: ${TOPIC_ANTI_FRAUD}
 
 
 
