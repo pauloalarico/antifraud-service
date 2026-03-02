@@ -1,6 +1,8 @@
 spring:
   application:
    name: antifraud
+  mongodb:
+     uri: ${MONGO_URL}
 
   kafka:
     bootstrap-servers: ${KAFKA_SERVER}
@@ -8,15 +10,18 @@ spring:
       group-id: ${apps.kafka.groupId}
 
 app:
+  collection: ${MONGO_COLLECTION}
   kafka:
     consumerId: ${GROUP_ID_ANTIFRAUD}
     server: ${KAFKA_SERVER}
     trustDeserializer: ${TRUST_PACKAGES_ANTIFRAUD}
     mappingNewAntiFraud: ${NEW_ANTIFRAUD}
-    newPaymentTopic: ${TOPIC_PAYMENT_REQUESTED}
+    newPaymentTopic: ${TOPIC_PAYMENT_REQUESTED:payment.requested}
     producer:
       type-mapping: ${PRODUCER_TYPE_MAPPING}
       topic: ${TOPIC_ANTI_FRAUD}
+server:
+  port: 8090
 
 
 

@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 
-@Document(collection = "${apps.}")
+@Document(collection = "${app.collection}")
 @Getter
 public class AntiFraud {
     @Id
