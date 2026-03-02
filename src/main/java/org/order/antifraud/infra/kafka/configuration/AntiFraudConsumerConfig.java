@@ -1,9 +1,13 @@
 package org.order.antifraud.infra.kafka.configuration;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.kafka.autoconfigure.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -18,17 +22,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ConfigurationProperties(prefix = "app.kafka")
 @Slf4j
+@RequiredArgsConstructor
 public class AntiFraudConsumerConfig {
-    private String consumerId;
+    @Value("${app.kafka.server}")
     private String server;
+    @Value("${app.kafka.trustDeserializer}")
     private String trustDeserializer;
+    @Value("${app.kafka.mappingNewAntiFraud}")
     private String mappingNewAntiFraud;
+
+    private final KafkaProperties kafkaProperties;
 
     @Bean
     public ConsumerFactory<String, Object> consumerFactory() {
-        Map<String, Object> configs = new HashMap<>();
+        Map<String, Object> configs = new HashMap<>(kafkaProperties.buildConsumerProperties());
         configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, server);
         configs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         configs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
