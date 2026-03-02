@@ -9,6 +9,7 @@ import org.order.antifraud.application.usecase.VerifyAntiFraudUseCase;
 import org.order.antifraud.domain.model.AntiFraud;
 import org.order.antifraud.infra.kafka.producer.AntiFraudProducer;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,10 +21,11 @@ public class AntiFraudConsumer {
     private final AntiFraudProducer producer;
 
     @KafkaListener(topics = "${app.kafka.newPaymentTopic}")
-    public void execute(NewAntifraudProcessorCommand command) {
+    public void execute(NewAntifraudProcessorCommand command, Acknowledgment acknowledgment) {
         AntiFraud antiFraud = verifyFraud.verify(command);
         ResultAntiFraudService result = analyzePayment.analyze(antiFraud);
         producer.send(result);
+        acknowledgment.acknowledge();
         log.info("AntiFraud service worked with sucess, for correlationId {}, with status {}", result.correlationId(), result.riskFraud());
     }
 }
