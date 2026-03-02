@@ -39,6 +39,7 @@ public class AntiFraudProducerConfig {
         return new DefaultKafkaProducerFactory<>(configs);
     }
 
+    @Bean
     public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(factory());
     }
