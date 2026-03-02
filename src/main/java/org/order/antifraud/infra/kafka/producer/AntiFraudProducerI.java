@@ -21,7 +21,7 @@ public class AntiFraudProducerI implements AntiFraudProducer{
 
     @Override
     public void send(ResultAntiFraudService result) {
-        kafkaTemplate.send(antiFraudTopic, result);
+        kafkaTemplate.send(antiFraudTopic, result.correlationId(), result);
     }
 
 }
