@@ -11,6 +11,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JacksonJsonDeserializer;
+import org.springframework.kafka.support.serializer.JacksonJsonSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +45,7 @@ public class AntiFraudProducerConfig {
         return new KafkaTemplate<>(factory());
     }
 
+    @Bean
     public NewTopic topic() {
         return TopicBuilder.name(topicProducerTopic)
                 .partitions(3)
