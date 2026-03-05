@@ -15,16 +15,16 @@ public class AntiFraud {
     @Id
     private String id;
     private String correlationId;
-    private String consumerId;
+    private String customerId;
     private BigDecimal amount;
     private MethodPayment method;
     private RiskFraud riskFraud;
     private PaymentStatus paymentStatus;
 
-    public static AntiFraud create(String correlationId, String consumerId, BigDecimal amount, MethodPayment method) {
+    public static AntiFraud create(String correlationId, String customerId, BigDecimal amount, MethodPayment method) {
         AntiFraud antiFraud = new AntiFraud();
         antiFraud.correlationId = correlationId;
-        antiFraud.consumerId = consumerId;
+        antiFraud.customerId = customerId;
         antiFraud.amount = amount;
         antiFraud.method = method;
         antiFraud.riskFraud = RiskFraud.LOW;
