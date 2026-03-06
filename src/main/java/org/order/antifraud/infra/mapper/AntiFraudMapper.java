@@ -12,7 +12,7 @@ public class AntiFraudMapper {
                 antiFraud.getPaymentStatus(),
                 antiFraud.getId(),
                 antiFraud.getCorrelationId(),
-                antiFraud.getConsumerId(),
+                antiFraud.getCustomerId(),
                 antiFraud.getAmount(),
                 antiFraud.getMethod(),
                 antiFraud.getRiskFraud()
