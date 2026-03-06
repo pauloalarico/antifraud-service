@@ -31,20 +31,8 @@ public class AntiFraud {
         return antiFraud;
     }
 
-    public void highRisk() {
-        this.riskFraud = RiskFraud.HIGH;
-    }
-
-    public void lowRisk() {
-        this.riskFraud = RiskFraud.LOW;
-    }
-
-    public void setAsFraud() {
-        this.riskFraud = RiskFraud.FRAUD;
-    }
-
-    public void mediumRisk() {
-        this.riskFraud = RiskFraud.MEDIUM;
+    public void classifyRisk(RiskFraud riskFraud) {
+        this.riskFraud = riskFraud;
     }
 
     public void approve() {
