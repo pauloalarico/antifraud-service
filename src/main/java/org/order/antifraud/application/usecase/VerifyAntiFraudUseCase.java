@@ -3,12 +3,12 @@ package org.order.antifraud.application.usecase;
 import lombok.RequiredArgsConstructor;
 import org.order.antifraud.application.dto.request.NewAntifraudProcessorCommand;
 import org.order.antifraud.application.dto.response.ResultAntiFraudService;
-import org.order.antifraud.domain.service.PaymentApprovalPolicy;
-import org.order.antifraud.domain.service.ScoreCalculator;
 import org.order.antifraud.domain.enums.RiskFraud;
 import org.order.antifraud.domain.model.AntiFraud;
+import org.order.antifraud.domain.repository.AntiFraudRepository;
+import org.order.antifraud.domain.service.PaymentApprovalPolicy;
+import org.order.antifraud.domain.service.ScoreCalculator;
 import org.order.antifraud.infra.mapper.AntiFraudMapper;
-import org.order.antifraud.infra.persistence.repository.AntiFraudMongoRepositoryI;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
@@ -17,7 +17,7 @@ import java.time.ZonedDateTime;
 @RequiredArgsConstructor
 public class VerifyAntiFraudUseCase {
 
-    private final AntiFraudMongoRepositoryI repository;
+    private final AntiFraudRepository repository;
     private final AntiFraudMapper mapper;
 
     public ResultAntiFraudService verify(NewAntifraudProcessorCommand command) {

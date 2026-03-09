@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class AntiFraudProducerI implements AntiFraudProducer{
+public class AntiFraudProducerI implements AntiFraudProducer {
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
