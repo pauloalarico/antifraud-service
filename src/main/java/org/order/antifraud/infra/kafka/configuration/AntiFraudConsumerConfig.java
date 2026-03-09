@@ -29,6 +29,10 @@ public class AntiFraudConsumerConfig {
     private String trustDeserializer;
     @Value("${app.kafka.mappingNewAntiFraud}")
     private String mappingNewAntiFraud;
+    @Value("${app.kafka.retryInterval}")
+    private Long retryInterval;
+    @Value("${app.kafka.maxAttempt}")
+    private Integer retryAttempts;
 
     private final KafkaProperties kafkaProperties;
 
@@ -56,7 +60,7 @@ public class AntiFraudConsumerConfig {
 
     @Bean
     public DefaultErrorHandler defaultErrorHandler() {
-        var backoff = new FixedBackOff(6000L, 3);
+        var backoff = new FixedBackOff(retryInterval, retryAttempts);
         return new DefaultErrorHandler(
                 ((consumerRecord, e) ->
                 {

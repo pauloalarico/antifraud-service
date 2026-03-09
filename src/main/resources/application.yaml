@@ -17,6 +17,8 @@ app:
     trustDeserializer: ${TRUST_PACKAGES_ANTIFRAUD}
     mappingNewAntiFraud: ${NEW_ANTIFRAUD}
     newPaymentTopic: ${TOPIC_PAYMENT_REQUESTED:payment.requested}
+    maxAttempt: ${KAFKA_MAX_RETRY}
+    retryInterval: ${KAFKA_INTERVAL_RETRY}
     producer:
       type-mapping: ${PRODUCER_TYPE_MAPPING}
       topic: ${TOPIC_ANTI_FRAUD}
