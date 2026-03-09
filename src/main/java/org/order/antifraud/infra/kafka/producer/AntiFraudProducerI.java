@@ -19,7 +19,15 @@ public class AntiFraudProducerI implements AntiFraudProducer {
 
     @Override
     public void send(ResultAntiFraudService result) {
-        kafkaTemplate.send(antiFraudTopic, result.correlationId(), result);
+        kafkaTemplate.send(antiFraudTopic, result.correlationId(), result)
+                .whenComplete((resultAnti, e) -> {
+                    if (e != null) {
+                        log.error("Failed to publish the message for the exception: {}, correlation: {}", e.getMessage(), result.correlationId());
+                        return;
+                    }
+
+                    log.debug("AntiFraud processor sent for correlation id: {}", result.correlationId());
+                }) ;
     }
 
 }
