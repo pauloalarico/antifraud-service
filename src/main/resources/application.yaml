@@ -10,10 +10,10 @@ spring:
       group-id: ${apps.kafka.groupId}
 
 app:
-  highAmountValue: ${}
-  midAmountValue: ${}
-  startHourTime: ${}
-  endHourTime: ${}
+  highAmountValue: ${HIGH_AMOUNT_VALUE}
+  midAmountValue: ${MID_AMOUNT_VALUE}
+  startHourTime: ${START_HOUR_TIME}
+  endHourTime: ${END_HOUR_TIME}
   acksConfig: ${ACKS_CONFIG}
   collection: ${MONGO_COLLECTION}
   kafka:
