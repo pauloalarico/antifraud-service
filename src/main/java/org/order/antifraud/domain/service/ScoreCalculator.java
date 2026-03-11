@@ -2,15 +2,23 @@ package org.order.antifraud.domain.service;
 
 import org.order.antifraud.domain.enums.MethodPayment;
 import org.order.antifraud.domain.enums.RiskFraud;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.math.BigDecimal;
 
 public final class ScoreCalculator {
 
-    private static final BigDecimal HIGH_AMOUNT = BigDecimal.valueOf(1000);
-    private static final BigDecimal MID_AMOUNT = BigDecimal.valueOf(400);
-    private static final Integer START_HOUR_TIME = 22;
-    private static final Integer END_HOUR_TIME = 6;
+    @Value("${app.highAmountValue}")
+    private static BigDecimal HIGH_AMOUNT;
+
+    @Value("${app.midAmountValue}")
+    private static BigDecimal MID_AMOUNT;
+
+    @Value("${app.startHourTime}")
+    private static Integer START_HOUR_TIME;
+
+    @Value("${app.endHourTime}")
+    private static Integer END_HOUR_TIME;
 
     public static RiskFraud calculate (BigDecimal amount, MethodPayment method, Integer hourOfPayment) {
         int score = 0;

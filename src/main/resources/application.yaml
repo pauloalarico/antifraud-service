@@ -10,6 +10,10 @@ spring:
       group-id: ${apps.kafka.groupId}
 
 app:
+  highAmountValue: ${}
+  midAmountValue: ${}
+  startHourTime: ${}
+  endHourTime: ${}
   collection: ${MONGO_COLLECTION}
   kafka:
     consumerId: ${GROUP_ID_ANTIFRAUD}
