@@ -28,13 +28,16 @@ public class AntiFraudProducerConfig {
     @Value("${app.kafka.producer.topic}")
     private String topicProducerTopic;
 
+    @Value("${app.kafka.acksConfig}")
+    private String acksConfig;
+
     @Bean
     public ProducerFactory<String, Object> factory() {
         Map<String, Object> configs = new HashMap<>();
         configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
         configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JacksonJsonSerializer.class);
-        configs.put(ProducerConfig.ACKS_CONFIG, "all");
+        configs.put(ProducerConfig.ACKS_CONFIG, acksConfig);
         configs.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
         configs.put(JacksonJsonDeserializer.TYPE_MAPPINGS, typeMapping);
         return new DefaultKafkaProducerFactory<>(configs);

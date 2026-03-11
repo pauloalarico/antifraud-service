@@ -14,6 +14,7 @@ app:
   midAmountValue: ${}
   startHourTime: ${}
   endHourTime: ${}
+  acksConfig: ${ACKS_CONFIG}
   collection: ${MONGO_COLLECTION}
   kafka:
     consumerId: ${GROUP_ID_ANTIFRAUD}
